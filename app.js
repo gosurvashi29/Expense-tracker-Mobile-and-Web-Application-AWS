@@ -29,7 +29,7 @@ app.use(cors({
   }));
 app.use(bodyParser.json());
 app.use(express.urlencoded({extended: false}));
-app.use(express.static(path.join(__dirname,"public")));
+app.use(express.static(path.join(__dirname,"Public")));
 
 User.hasMany(Expense); // One to Many Relationship 
 Expense.belongsTo(User);
@@ -44,21 +44,10 @@ app.use("/user",expenseRoutes);
 app.use("/api",expenseRoutes)
 app.use('/api', paymentRoutes); 
 app.use('/premium', premiumFeatureRoutes)
-app.use("/password",passwordRoutes)
+app.use("/password",passwordRoutes) 
 
-app.get("/signup",(req,res)=>{
-   res.sendFile(path.join(__dirname,"views","SignUp.html"))
-})
 
-app.get("/login",(req,res)=>{
-    res.sendFile(path.join(__dirname,"views","LogIn.html"))
- })
-
-app.get("/forgotpass",(req,res)=>{
-    res.sendFile(path.join(__dirname,"views","ForgotPassword.html"))
- })
-
- app.get("/expensetrack",(req,res)=>{
+app.get("/expensetrack",(req,res)=>{
     res.sendFile(path.join(__dirname,"views","expense.html")) 
  })
 
@@ -71,5 +60,5 @@ sequelize
     app.listen(process.env.PORT || 3000,()=>{console.log(`Server is running on http://localhost:${process.env.PORT || 3000}`)});
 })
 .catch(err=>{
-    console.log(err) 
+    console.log(err)  
 });

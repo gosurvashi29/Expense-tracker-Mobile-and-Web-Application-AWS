@@ -83,7 +83,7 @@ exports.updatePassword = async (req, res) => {
   try {
     const email = req.body.email;
     const password= req.body.newPassword;
-    console.log(req.body)
+    
     
     
     const user = await User.findOne({
@@ -94,7 +94,9 @@ exports.updatePassword = async (req, res) => {
 
     const saltrounds=10;
         bcrypt.hash(password, saltrounds, async(err,hash)=>{
-            console.log(err)
+            if(err){
+              console.log(err)
+            }
             
                 user.password=hash
                 await user.save()
