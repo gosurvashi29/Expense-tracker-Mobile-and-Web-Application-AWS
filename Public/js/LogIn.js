@@ -19,7 +19,7 @@ async function logIn(event) {
         alert(response.data.message)
         localStorage.setItem('token', response.data.token)
         console.log(response.data.isPremium)
-        window.location.href="../views/expense.html"
+        window.location.href="../views/expense"
     }
     else{
         throw new Error(response.data.message)

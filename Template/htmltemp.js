@@ -22,7 +22,7 @@ const cssTemp = `
 
 const jsTemp = `
 <script> 
-    setTimeout(() => { window.location.href = '/expensetrack'; }, 8000); 
+    setTimeout(() => { window.location.href = '../../views/LogIn'; }, 8000); 
 </script>
 `;
 

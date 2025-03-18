@@ -44,62 +44,15 @@ app.use("/user",expenseRoutes);
 app.use("/api",expenseRoutes)
 app.use('/api', paymentRoutes); 
 app.use('/premium', premiumFeatureRoutes)
-app.use("/password",passwordRoutes)
+app.use("/password",passwordRoutes) 
 
 
-//serving html files
+app.get("/expensetrack",(req,res)=>{
+    res.sendFile(path.join(__dirname,"views","expense.html")) 
+ })
 
 
 
- app.get('*', (req, res) => {
-    const requestedUrl = req.url;
-    console.log('Requested URL:', requestedUrl);
-    console.log('Current directory:', __dirname);
-
-    if (requestedUrl.startsWith('/views/')) {
-        
-        const filePath = path.join(__dirname, 'views', requestedUrl.slice(7)+'.html');
-        console.log('Serving file from path:', filePath);
-
-        
-        res.sendFile(filePath, (err) => {
-            if (err) {
-                console.error('Error serving file:', err);
-                res.status(404).send('File Not Found');
-            }
-        });
-    } 
-    
-    else{
-        
-        if(requestedUrl.startsWith('/css/')) {
-        
-        const publicPath = path.join(__dirname, 'Public', requestedUrl+'.css'); 
-        console.log('Serving file from path:', publicPath);
-        res.sendFile(publicPath, (err) => { 
-            
-            if (err) {
-                console.error('Error serving file:', err); 
-                res.status(404).send('File Not Found');
-            }
-        });  
-    }
-    else {
-        
-        const publicPath = path.join(__dirname, 'Public','js', requestedUrl+'.js');
-        console.log('Serving file from path:', publicPath);
-        res.sendFile(publicPath, (err) => {
-            
-            if (err) {
-                console.error('Error serving file:', err); 
-                res.status(404).send('File Not Found'); 
-            }
-        });  
-    }
-}
-});
-
-//C:\SharpenerProjects\Expense tracker Mobile and Web Application-AWS\Public\js\buyPremium.js
 sequelize
 .sync({force:false})
 .then(result=>{
@@ -107,5 +60,5 @@ sequelize
     app.listen(process.env.PORT || 3000,()=>{console.log(`Server is running on http://localhost:${process.env.PORT || 3000}`)});
 })
 .catch(err=>{
-    console.log(err) 
+    console.log(err)  
 });
