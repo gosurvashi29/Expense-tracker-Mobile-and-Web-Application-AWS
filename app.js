@@ -64,7 +64,7 @@ app.use("/password",passwordRoutes)
         
         res.sendFile(filePath, (err) => {
             if (err) {
-                console.error('Error serving file:', err);
+                console.error('Error serving file:', err); 
                 res.status(404).send('File Not Found');
             }
         });
