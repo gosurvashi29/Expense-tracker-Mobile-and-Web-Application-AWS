@@ -16,13 +16,13 @@ async function signUp(event) {
   const response= await axios.post("http://localhost:3000/user/signup",signUpDetails)
 
   if (response.status===201){
-    window.location.href="../views/LogIn.html"
+    window.location.href="../views/LogIn"
   }
   else{
      console.log("Failed to Login");
   }
 }
 catch(err){
-  document.body.innerHTML +=`<div style="color:red">${err} </div>`;
+  document.body.innerHTML +=`<div style="color:red">${err} </div>`; 
 }
 }
